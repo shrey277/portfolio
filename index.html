@@ -436,12 +436,12 @@ footer b{color:var(--ink)}
 <script>
 /* ---------- projects data ---------- */
 const projects=[
- {d:"arunwaghmode.com",n:"Arun Waghmode",t:"wordpress",desc:"Personal brand and professional services website",img:"assets/projects/arun-waghmode.png"},
- {d:"coachnilkamal.com",n:"Coach Nilkamal",t:"wordpress",desc:"Coaching and personal transformation platform",img:"assets/projects/coach-nilkamal.png"},
- {d:"lalitbhargav.com",n:"Lalit Bhargav",t:"wordpress",desc:"Personal brand and consulting website",img:"assets/projects/lalit-bhargav.png"},
- {d:"rittanairr.com",n:"Ritta Nairr",t:"wordpress",desc:"Personal brand and professional portfolio",img:"assets/projects/ritta-nairr.png"},
- {d:"powertechenergysolutions.com",n:"Power Tech Energy Solutions",t:"wordpress",desc:"Solar EPC and clean-energy solutions platform",img:"assets/projects/powertech-energy.png"},
- {d:"ajarkhi.com",n:"Ajarkhi",t:"shopify",desc:"Shopify commerce experience — currently in development",img:"assets/projects/ajarkhi.png",wip:true},
+ {d:"arunwaghmode.com",n:"Arun Waghmode",t:"wordpress",desc:"Personal brand and professional services website"},
+ {d:"coachnilkamal.com",n:"Coach Nilkamal",t:"wordpress",desc:"Coaching and personal transformation platform"},
+ {d:"lalitbhargav.com",n:"Lalit Bhargav",t:"wordpress",desc:"Personal brand and consulting website"},
+ {d:"rittanairr.com",n:"Ritta Nairr",t:"wordpress",desc:"Personal brand and professional portfolio"},
+ {d:"powertechenergysolutions.com",n:"Power Tech Energy Solutions",t:"wordpress",desc:"Solar EPC and clean-energy solutions platform"},
+ {d:"ajarkhi.com",n:"Ajarkhi",t:"shopify",desc:"Shopify commerce experience — currently in development",wip:true},
  {d:"poojapublication.com",n:"Pooja Publication",t:"shopify",desc:"E-commerce bookstore with full product catalog and payments"},
  {d:"lixusspaces.com",n:"Lixus Spaces",t:"shopify",desc:"Shopify store with custom theme and checkout setup"},
  {d:"focusedu.org",n:"Focus Education",t:"wordpress",desc:"Education platform built with WordPress & Elementor"},
@@ -466,9 +466,9 @@ const grid=document.getElementById('projGrid');
 grid.innerHTML=projects.map((p,i)=>`
  <a class="browser rv ${'d'+(i%3+1)}" data-type="${p.t}" href="https://${p.d}" target="_blank" rel="noopener">
    <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">https://${p.d}</div></div>
-   <div class="browser-preview"><img class="site-shot" src="\${p.img||(['poojapublication.com','lixusspaces.com','focusedu.org','titanenergy.qa'].includes(p.d)?'assets/projects/'+({'poojapublication.com':'pooja-publication','lixusspaces.com':'lixus-spaces','focusedu.org':'focus-education','titanenergy.qa':'titan-energy'}[p.d])+'.png':'https://image.thum.io/get/width/1200/crop/720/noanimate/https://'+p.d)}" alt="${p.n} live website preview" loading="lazy"></div><div class="browser-body">
+   <div class="browser-preview"><img class="site-shot" src="${p.img||(['poojapublication.com','lixusspaces.com','focusedu.org','titanenergy.qa'].includes(p.d)?'assets/projects/'+({'poojapublication.com':'pooja-publication','lixusspaces.com':'lixus-spaces','focusedu.org':'focus-education','titanenergy.qa':'titan-energy'}[p.d])+'.png':'https://image.thum.io/get/width/1200/crop/720/noanimate/https://'+p.d)}" alt="${p.n} live website preview" loading="lazy"></div><div class="browser-body">
      <div><h4>${p.n}</h4><p>${p.desc}</p></div>
-     <div class="proj-meta"><span class="tag ${p.t}">\${p.wip?'In development':p.t==='shopify'?'Shopify':'WordPress'}</span><span class="visit">Visit site <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
+     <div class="proj-meta"><span class="tag ${p.t}">${p.wip?'In development':p.t==='shopify'?'Shopify':'WordPress'}</span><span class="visit">Visit site <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
    </div>
  </a>`).join('');
 
