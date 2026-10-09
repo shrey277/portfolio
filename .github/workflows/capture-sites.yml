@@ -25,3 +25,5 @@ jobs:
           git add assets/projects
           git diff --cached --quiet || git commit -m "assets: capture live client websites"
           git push
+
+# capture batch 2
