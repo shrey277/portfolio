@@ -1,0 +1,36 @@
+name: Capture six new portfolio sites
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - ".github/workflows/capture-new-sites.yml"
+permissions:
+  contents: write
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm install playwright
+      - run: npx playwright install --with-deps chromium
+      - name: Capture every website separately
+        shell: bash
+        run: |
+          mkdir -p assets/projects
+          npx playwright screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 6000 https://arunwaghmode.com/ assets/projects/arun-waghmode.png || true
+          npx playwright screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 6000 https://coachnilkamal.com/ assets/projects/coach-nilkamal.png || true
+          npx playwright screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 6000 https://lalitbhargav.com/ assets/projects/lalit-bhargav.png || true
+          npx playwright screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 6000 https://rittanairr.com/ assets/projects/ritta-nairr.png || true
+          npx playwright screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 6000 https://powertechenergysolutions.com/ assets/projects/powertech-energy.png || true
+          npx playwright screenshot --browser chromium --viewport-size "1440,1000" --wait-for-timeout 6000 https://ajarkhi.com/ assets/projects/ajarkhi.png || true
+      - name: Commit captured screenshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add assets/projects
+          git diff --cached --quiet || git commit -m "assets: add browser screenshots for six new projects"
+          git push
