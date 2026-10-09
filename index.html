@@ -460,7 +460,7 @@ const grid=document.getElementById('projGrid');
 grid.innerHTML=projects.map((p,i)=>`
  <a class="browser rv ${'d'+(i%3+1)}" data-type="${p.t}" href="https://${p.d}" target="_blank" rel="noopener">
    <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">https://${p.d}</div></div>
-   <div class="browser-preview"><img class="site-shot" src="assets/projects/${p.d==='poojapublication.com'?'pooja-publication':p.d==='lixusspaces.com'?'lixus-spaces':p.d==='focusedu.org'?'focus-education':p.d==='titanenergy.qa'?'titan-energy':p.d.replace(/\./g,'-')}.png" alt="${p.n} live website preview" loading="lazy"></div><div class="browser-body">
+   <div class="browser-preview"><img class="site-shot" src="${['poojapublication.com','lixusspaces.com','focusedu.org','titanenergy.qa'].includes(p.d)?'assets/projects/'+({'poojapublication.com':'pooja-publication','lixusspaces.com':'lixus-spaces','focusedu.org':'focus-education','titanenergy.qa':'titan-energy'}[p.d])+'.png':'https://image.thum.io/get/width/1200/crop/720/noanimate/https://'+p.d}" alt="${p.n} live website preview" loading="lazy"></div><div class="browser-body">
      <div><h4>${p.n}</h4><p>${p.desc}</p></div>
      <div class="proj-meta"><span class="tag ${p.t}">${p.t==='shopify'?'Shopify':'WordPress'}</span><span class="visit">Visit site <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
    </div>
