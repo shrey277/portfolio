@@ -224,7 +224,23 @@ footer b{color:var(--ink)}
   .rv{opacity:1;transform:none}
   html{scroll-behavior:auto}
 }
-.site-shot{width:100%;height:190px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);display:block;transition:transform .55s cubic-bezier(.2,.6,.2,1),filter .4s}.browser:hover .site-shot{transform:scale(1.025);filter:saturate(1.08)}.browser{overflow:hidden}.browser-preview{overflow:hidden;background:var(--tint);position:relative}.browser-preview:after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,rgba(10,14,30,.12));pointer-events:none}@media(max-width:680px){.site-shot{height:180px}}.browser{position:relative}.browser:hover{border-color:rgba(39,67,255,.35)}.browser-body{min-height:150px}.proj-grid{align-items:stretch}.browser[href*="ajarkhi"] .tag{background:#FFF1D6;color:#A45B00}.browser[href*="ajarkhi"]:after{content:"BUILDING NOW";position:absolute;top:54px;right:14px;z-index:4;background:#0A0E1E;color:#fff;padding:6px 10px;border-radius:99px;font:500 9px var(--font-mono);letter-spacing:.12em}.browser-preview{background:linear-gradient(135deg,#E8ECFF,#F8F9FF);min-height:190px}.browser-preview:before{content:"LIVE PROJECT";position:absolute;inset:0;display:grid;place-items:center;font:500 11px var(--font-mono);letter-spacing:.18em;color:#2743FF55}.site-shot{position:relative;z-index:1}</style>
+.site-shot{width:100%;height:190px;object-fit:cover;object-position:top;border-bottom:1px solid var(--line);display:block;transition:transform .55s cubic-bezier(.2,.6,.2,1),filter .4s}.browser:hover .site-shot{transform:scale(1.025);filter:saturate(1.08)}.browser{overflow:hidden}.browser-preview{overflow:hidden;background:var(--tint);position:relative}.browser-preview:after{content:"";position:absolute;inset:auto 0 0;height:30%;background:linear-gradient(transparent,rgba(10,14,30,.12));pointer-events:none}@media(max-width:680px){.site-shot{height:180px}}.browser{position:relative}.browser:hover{border-color:rgba(39,67,255,.35)}.browser-body{min-height:150px}.proj-grid{align-items:stretch}.browser[href*="ajarkhi"] .tag{background:#FFF1D6;color:#A45B00}.browser[href*="ajarkhi"]:after{content:"BUILDING NOW";position:absolute;top:54px;right:14px;z-index:4;background:#0A0E1E;color:#fff;padding:6px 10px;border-radius:99px;font:500 9px var(--font-mono);letter-spacing:.12em}.browser-preview{background:linear-gradient(135deg,#E8ECFF,#F8F9FF);min-height:190px}.browser-preview:before{content:"LIVE PROJECT";position:absolute;inset:0;display:grid;place-items:center;font:500 11px var(--font-mono);letter-spacing:.18em;color:#2743FF55}.site-shot{position:relative;z-index:1}/* premium editorial project redesign */
+.proj-grid{grid-template-columns:repeat(2,1fr);gap:18px}
+.browser{min-height:320px;border:1px solid rgba(10,14,30,.12);border-radius:24px;background:#fff;overflow:hidden;position:relative;isolation:isolate}
+.browser:before{content:"";position:absolute;width:260px;height:260px;border-radius:50%;right:-90px;top:-100px;background:radial-gradient(circle,rgba(39,67,255,.18),rgba(39,67,255,0) 68%);transition:transform .55s cubic-bezier(.2,.6,.2,1)}
+.browser:nth-child(4n+2):before{background:radial-gradient(circle,rgba(124,58,237,.2),rgba(124,58,237,0) 68%)}
+.browser:nth-child(4n+3):before{background:radial-gradient(circle,rgba(14,165,233,.18),rgba(14,165,233,0) 68%)}
+.browser:nth-child(4n+4):before{background:radial-gradient(circle,rgba(16,185,129,.18),rgba(16,185,129,0) 68%)}
+.browser:hover:before{transform:translate(-18px,18px) scale(1.16)}
+.browser-body{min-height:320px;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;position:relative;z-index:2}
+.case-no{position:absolute;left:28px;top:26px;font:500 11px var(--font-mono);letter-spacing:.14em;color:var(--cobalt)}
+.browser-body h4{font-family:var(--font-display);font-size:clamp(25px,3vw,38px);line-height:1.05;letter-spacing:-.035em;margin:0 0 12px;max-width:82%}
+.browser-body p{font-size:15px;max-width:420px;line-height:1.55;margin:0 0 28px}
+.proj-meta{border-top:1px solid var(--line);padding-top:18px}
+.browser:hover{transform:translateY(-7px);box-shadow:0 25px 60px rgba(10,14,30,.12);border-color:rgba(39,67,255,.25)}
+.browser[href*="ajarkhi"]:after{top:24px}
+.browser-preview,.browser-bar{display:none!important}
+@media(max-width:680px){.proj-grid{grid-template-columns:1fr}.browser,.browser-body{min-height:285px}}</style>
 </head>
 <body>
 
@@ -465,8 +481,8 @@ const projects=[
 const grid=document.getElementById('projGrid');
 grid.innerHTML=projects.map((p,i)=>`
  <a class="browser rv ${'d'+(i%3+1)}" data-type="${p.t}" href="https://${p.d}" target="_blank" rel="noopener">
-   <div class="browser-bar"><div class="dots"><i></i><i></i><i></i></div><div class="urlbar">https://${p.d}</div></div>
-   <div class="browser-preview"><img class="site-shot" src="${p.img||(['poojapublication.com','lixusspaces.com','focusedu.org','titanenergy.qa'].includes(p.d)?'assets/projects/'+({'poojapublication.com':'pooja-publication','lixusspaces.com':'lixus-spaces','focusedu.org':'focus-education','titanenergy.qa':'titan-energy'}[p.d])+'.png':'https://image.thum.io/get/width/1200/crop/720/noanimate/https://'+p.d)}" alt="${p.n} live website preview" loading="lazy" onerror="this.style.display='none'"></div><div class="browser-body">
+   <div class="browser-body">
+     <span class="case-no">CASE / ${String(i+1).padStart(2,'0')}</span>
      <div><h4>${p.n}</h4><p>${p.desc}</p></div>
      <div class="proj-meta"><span class="tag ${p.t}">${p.wip?'In development':p.t==='shopify'?'Shopify':'WordPress'}</span><span class="visit">Visit site <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M7 17L17 7M9 7h8v8"/></svg></span></div>
    </div>
